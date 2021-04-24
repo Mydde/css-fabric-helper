@@ -1,13 +1,17 @@
- 
-
-export interface FabricFn{
-    (testString: string) : boolean;
+interface cssObjectKey {
+  [key: string]: any;
 }
 
-type PicomatchOptions = {dot: boolean};
+interface cssObject {
+  [key: string]: cssObjectKey; 
+} 
+
+export interface FabricFn {
+  (cssObect: string): boolean;
+}
 
 declare const fabric: {
-    FabricFn
-}
+  FabricFn;
+};
 
-export default fabric
+export default fabric;
