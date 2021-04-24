@@ -1,17 +1,18 @@
-interface cssObjectKey {
+export interface ICssObjectLine  {
+  any,
   [key: string]: any;
 }
 
-interface cssObject {
-  [key: string]: cssObjectKey; 
+export interface ICssObject {
+  [key: string]: ICssObjectLine; 
 } 
 
-export interface FabricFn {
-  (cssObect: string): boolean;
+interface FabricFn {
+  (fabricObject: ICssObject): boolean;
 }
 
 declare const fabric: {
-  FabricFn;
+  process: FabricFn;
 };
 
 export default fabric;

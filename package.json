@@ -13,7 +13,9 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.7",
+    "terminal": "^0.1.4",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
-  }
+  },
+  "dependencies": {}
 }

@@ -4,18 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fabric_helper_1 = __importDefault(require("./fabric-helper"));
-/* brd u _ 6
-md 3
-lg 4
-b _ 4 */
-// txt-h2
-// txt-sm-h2
-// pad-r
-// pad-t
-// pad-l-2
-// pad-sm-b-2
-// pad-sm-t-3
-const c = "c";
 const cssObject = {
     txt: "h6",
     grid: ["h", "wrap"],
@@ -29,16 +17,13 @@ const cssObject = {
     },
     padding: [
         "right",
-        "top",
-        { left: 2 },
+        { top: 4, bottom: 3 },
         {
-            sm: { bottom: 2, top: 3 },
+            sm: { bottom: 2, top: 2 },
             xxl: { bottom: 1, left: 2 },
         },
     ],
 };
-const fde = {
-    md: { pad: "" },
-};
-console.log(fabric_helper_1.default(cssObject));
+let test = fabric_helper_1.default.process(cssObject);
+console.log({ test });
 exports.default = fabric_helper_1.default;

@@ -1,55 +1,84 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const playMap = function (arg) {
-    const { tagRule, fabValue } = arg;
-    let col = "";
-    switch (typeof fabValue) {
-        case "string":
-        case "number":
-            return (col = prefix(tagRule) + fabValue);
-            break;
-        default:
-            return loop({ tagRule, Arr: fabValue });
-            break;
+class CssFabricHelper {
+    constructor(inputFabricObject = {}) {
+        this.fabricObject = inputFabricObject;
+        this.fabricDebug = {};
+        this.fabricTerminate = [];
+        this.fabricObjectTags = Object.keys(this.fabricObject);
     }
-};
-const loop = (arg) => {
-    const { tagRule, Arr } = arg;
-    if (Array.isArray(Arr)) {
-        return loopArray({ tagRule, Arr });
+    // step 1 : loop trough the object
+    parseFabricObject() {
+        //
+        this.fabricObjectTags.forEach((fabricRule) => {
+            // serve activeRule in an array for later join
+            this.activeFabricTag = [fabricRule];
+            this.activeFabricTagValue = this.fabricObject[fabricRule];
+            this.parseFabricObjectTag(fabricRule, this.activeFabricTagValue);
+        });
     }
-    else {
-        return loopObject({ tagRule, Obj: Arr });
+    static process(inputFabricObject) {
+        const inst = new CssFabricHelper(inputFabricObject);
+        // launch parse
+        inst.parseFabricObject();
+        return inst._finalize();
     }
-};
-// if [] => use prefix
-const loopArray = (arg) => {
-    const { tagRule, Arr } = arg;
-    let red = [];
-    for (const arr of Arr) {
-        red.push(playMap({ tagRule, fabValue: arr }));
+    parseFabricObjectTag(tagRule, tagValue) {
+        //
+        this.fabricDebug[this.activeFabricTag] = [];
+        //
+        const tagValueType = getType(tagValue);
+        //
+        switch (tagValueType) {
+            case "string":
+                this._terminate(tagRule, tagValue);
+                break;
+            case "array":
+                for (const tag of tagValue) {
+                    if (getType(tag) === "string") {
+                        this._terminate(tagRule, tag);
+                    }
+                    if (getType(tag) === "array") {
+                        console.log(tag);
+                    }
+                    if (getType(tag) === "object") {
+                        for (const tagKey in tag) {
+                            let propertyValue = tag[tagKey];
+                            let newParentKey = tagRule + "-" + tagKey;
+                            this.parseFabricObjectTag(newParentKey, propertyValue);
+                        }
+                    }
+                }
+                break;
+            case "object":
+                for (const tagValueKey in tagValue) {
+                    let propertyValue = tagValue[tagValueKey];
+                    let newParentKey = tagRule + "-" + tagValueKey;
+                    this.parseFabricObjectTag(newParentKey, propertyValue);
+                }
+                break;
+            default:
+                break;
+        }
     }
-    return red.join("   ,   ");
-};
-const loopObject = (arg) => {
-    const { tagRule, Obj } = arg;
-    let red = [];
-    // stick property and value
-    for (const prop of Object.keys(Obj)) {
-        let value = Obj[prop];
-        red.push(tagRule + "-" + playMap({ tagRule: prop, fabValue: value }));
+    _finalize() {
+        return this.fabricTerminate.join(" ");
     }
-    return red.join("    |    ");
-    return "-object";
-};
-function prefix($prefix) {
-    return !$prefix ? "" : $prefix + "-";
+    _terminate(parentKey, val) {
+        //
+        this.fabricTerminate.push(`${parentKey}-${val}`);
+    }
+    log(...content) {
+        console.log(JSON.stringify(content, undefined, "\t"));
+    }
 }
-const fabric = function (cssObject, options) {
-    const cssOut = Object.keys(cssObject).map((fabRule, index) => {
-        const fabValue = cssObject[fabRule];
-        return playMap({ tagRule: fabRule, fabValue });
-    });
-    return cssOut;
+const getType = (val) => {
+    if (typeof val === "string" || typeof val === "number")
+        return "string";
+    if (Array.isArray(val))
+        return "array";
+    if (typeof val === "object")
+        return "object";
+    return "string";
 };
-exports.default = fabric;
+exports.default = CssFabricHelper;
