@@ -2,7 +2,8 @@
   "name": "css-fabric-helper",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "css-fabric-helper/index.js",
+  "types": "css-fabric-helper/index.d.ts",
   "scripts": {
     "dev": "nodemon",
     "start": "tsc & node build/",
@@ -13,7 +14,6 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.7",
-    "terminal": "^0.1.4",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
