@@ -1,7 +1,7 @@
 "use strict";
 
-type TCssObjectValue  = number | string | any[];
- 
+type TCssObjectValue = number | string | any[];
+
 interface ICssObject {
   [key: string]: TCssObjectValue;
 }
@@ -14,8 +14,8 @@ class CssFabricHelper {
 
   private activeFabricTag: any;
   private activeFabricTagValue: any;
- 
-  constructor(inputFabricObject: ICssObject={}) {
+
+  constructor(inputFabricObject: ICssObject = {}) {
     this.fabricObject = inputFabricObject;
     this.fabricDebug = {};
     this.fabricTerminate = [];
@@ -23,7 +23,7 @@ class CssFabricHelper {
   }
 
   // step 1 : loop trough the object
-  private parseFabricObject() {  
+  private parseFabricObject() {
     //
     this.fabricObjectTags.forEach((fabricRule: string) => {
       // serve activeRule in an array for later join
@@ -31,7 +31,7 @@ class CssFabricHelper {
       this.activeFabricTagValue = this.fabricObject[fabricRule];
 
       this.parseFabricObjectTag(fabricRule, this.activeFabricTagValue);
-    }); 
+    });
   }
 
   static process(inputFabricObject: ICssObject): string {
@@ -42,20 +42,19 @@ class CssFabricHelper {
     return inst.finalize();
   }
 
-
-  private parseFabricObjectTag(tagRule: string, tagValue: any) {     
+  private parseFabricObjectTag(tagRule: string, tagValue: any) {
     //
-    this.fabricDebug[this.activeFabricTag] = []; 
+    this.fabricDebug[this.activeFabricTag] = [];
     //
     const tagValueType = this.getType(tagValue);
     //
     switch (tagValueType) {
       case "string":
-        this.terminate(tagRule, tagValue); 
+        this.terminate(tagRule, tagValue);
         break;
       case "array":
         for (const tag of tagValue) {
-          if (this.getType(tag) === "string") { 
+          if (this.getType(tag) === "string") {
             this.terminate(tagRule, tag);
           }
           if (this.getType(tag) === "array") {
@@ -83,8 +82,8 @@ class CssFabricHelper {
       default:
         break;
     }
-  } 
-  
+  }
+
   private finalize() {
     return this.fabricTerminate.join(" ");
   }
@@ -93,19 +92,17 @@ class CssFabricHelper {
     //
     this.fabricTerminate.push(`${parentKey}-${val}`);
   }
-  
+
   private log(...content: any) {
-    console.log(JSON.stringify(content, undefined, "\t")); 
+    console.log(JSON.stringify(content, undefined, "\t"));
   }
 
-  private   getType = (val: any) => {
+  private getType = (val: any) => {
     if (typeof val === "string" || typeof val === "number") return "string";
     if (Array.isArray(val)) return "array";
     if (typeof val === "object") return "object";
     return "string";
-  }
+  };
 }
 
- 
-
-export default {process : CssFabricHelper.process} ;   
+export default { process: CssFabricHelper.process };
