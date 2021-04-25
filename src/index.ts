@@ -1,13 +1,17 @@
-"use strict";
+"use strict"; 
 
-type TCssObjectValue = number | string | any[];
+type TCssObjectValue = number | string | any[] | ICssFabricArgs;
 
-interface ICssObject {
+export interface ICssFabricProps {
   [key: string]: TCssObjectValue;
 }
 
+interface ICssFabricArgs { 
+  [key: string]: TCssObjectValue;
+}
+ 
 class CssFabricHelper {
-  fabricObject: ICssObject;
+  fabricObject: ICssFabricProps;
   fabricObjectTags: any[];
   fabricDebug: any;
   private fabricTerminate: any;
@@ -15,7 +19,7 @@ class CssFabricHelper {
   private activeFabricTag: any;
   private activeFabricTagValue: any;
 
-  constructor(inputFabricObject: ICssObject = {}) {
+  constructor(inputFabricObject: ICssFabricProps = {}) {
     this.fabricObject = inputFabricObject;
     this.fabricDebug = {};
     this.fabricTerminate = [];
@@ -34,7 +38,7 @@ class CssFabricHelper {
     });
   }
 
-  static process(inputFabricObject: ICssObject): string {
+  static process(inputFabricObject: ICssFabricProps): string {
     const inst = new CssFabricHelper(inputFabricObject);
 
     // launch parse
@@ -90,7 +94,12 @@ class CssFabricHelper {
 
   private terminate(parentKey: string, val: string) {
     //
-    this.fabricTerminate.push(`${parentKey}-${val}`);
+    this.fabricTerminate.push(this.unify(parentKey, val));
+  }
+
+  private unify(parentKey: string, val: string): string {
+    
+    return !Boolean(val)? `${parentKey}` : `${parentKey}-${val}`;
   }
 
   private log(...content: any) {
@@ -103,6 +112,10 @@ class CssFabricHelper {
     if (typeof val === "object") return "object";
     return "string";
   };
+
+  private isEmpty(val: string){
+    return (val.length === 0 || !val.trim());
+  }
 }
 
 export default { process: CssFabricHelper.process };

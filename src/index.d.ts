@@ -5,6 +5,6 @@
  
 interface cssFabricHelper{
 
-}
+} 
 
 export default cssFabricHelper; 

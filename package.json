@@ -1,8 +1,13 @@
 {
   "name": "@mydde/css-fabric-helper",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./lib/index.js",
+  "homepage": "https://github.com/Mydde/css-fabric-helper",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Mydde/css-fabric-helper.git"
+  },
+  "version": "1.0.0-alpha",
+  "description": "css-fabric-helper is a shorthand classnames builder dedicated to css frameworks",
+  "main": "./lib",
   "typings": "./lib/index",
   "types": "./lib/index.d.ts",
   "files": [
@@ -11,14 +16,21 @@
   "scripts": {
     "dev": "tsc --watch & node lib/ ",
     "start": "tsc & node lib/",
+    "docs": "node lib/docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Lebrun Meddy",
+    "email": "lebrn.meddy@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
+    "@types/json2md": "^1.5.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "json2md": "^1.10.0"
+  }
 }

@@ -1,22 +1,27 @@
-declare type TCssObjectValue = number | string | any[];
-interface ICssObject {
+declare type TCssObjectValue = number | string | any[] | ICssFabricArgs;
+export interface ICssFabricProps {
+    [key: string]: TCssObjectValue;
+}
+interface ICssFabricArgs {
     [key: string]: TCssObjectValue;
 }
 declare class CssFabricHelper {
-    fabricObject: ICssObject;
+    fabricObject: ICssFabricProps;
     fabricObjectTags: any[];
     fabricDebug: any;
     private fabricTerminate;
     private activeFabricTag;
     private activeFabricTagValue;
-    constructor(inputFabricObject?: ICssObject);
+    constructor(inputFabricObject?: ICssFabricProps);
     private parseFabricObject;
-    static process(inputFabricObject: ICssObject): string;
+    static process(inputFabricObject: ICssFabricProps): string;
     private parseFabricObjectTag;
     private finalize;
     private terminate;
+    private unify;
     private log;
     private getType;
+    private isEmpty;
 }
 declare const _default: {
     process: typeof CssFabricHelper.process;
