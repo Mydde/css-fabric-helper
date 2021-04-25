@@ -1,9 +1,8 @@
 "use strict";
 
-type TCssObjectValue  = number | string | any[];
- 
+
 interface ICssObject {
-  [key: string]: TCssObjectValue;
+  [key: string]: number | string | any [];
 }
 
 class CssFabricHelper {

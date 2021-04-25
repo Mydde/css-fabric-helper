@@ -1,15 +1,14 @@
 "use strict";
 
-type TCssObjectValue  = number | string | any[];
- 
+
 interface ICssObject {
-  [key: string]: TCssObjectValue;
+  [key: string]: any;
 }
 
 class CssFabricHelper {
   fabricObject: ICssObject;
   fabricObjectTags: any[];
-  fabricDebug: any;
+  private fabricDebug: any;
   private fabricTerminate: any;
 
   private activeFabricTag: any;
@@ -39,7 +38,7 @@ class CssFabricHelper {
 
     // launch parse
     inst.parseFabricObject();
-    return inst.finalize();
+    return inst._finalize();
   }
 
 
@@ -51,12 +50,12 @@ class CssFabricHelper {
     //
     switch (tagValueType) {
       case "string":
-        this.terminate(tagRule, tagValue); 
+        this._terminate(tagRule, tagValue); 
         break;
       case "array":
         for (const tag of tagValue) {
           if (this.getType(tag) === "string") { 
-            this.terminate(tagRule, tag);
+            this._terminate(tagRule, tag);
           }
           if (this.getType(tag) === "array") {
             console.log(tag);
@@ -85,11 +84,11 @@ class CssFabricHelper {
     }
   } 
   
-  private finalize() {
+  private _finalize() {
     return this.fabricTerminate.join(" ");
   }
 
-  private terminate(parentKey: string, val: string) {
+  private _terminate(parentKey: string, val: string) {
     //
     this.fabricTerminate.push(`${parentKey}-${val}`);
   }

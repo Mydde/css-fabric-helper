@@ -1,20 +1,16 @@
 "use strict";
 
-type TCssObjectValue  = number | string | any[];
- 
-interface ICssObject {
-  [key: string]: TCssObjectValue;
-}
+
 
 class CssFabricHelper {
   fabricObject: ICssObject;
   fabricObjectTags: any[];
   fabricDebug: any;
-  private fabricTerminate: any;
+  fabricTerminate: any;
 
   private activeFabricTag: any;
   private activeFabricTagValue: any;
- 
+
   constructor(inputFabricObject: ICssObject={}) {
     this.fabricObject = inputFabricObject;
     this.fabricDebug = {};
@@ -23,7 +19,7 @@ class CssFabricHelper {
   }
 
   // step 1 : loop trough the object
-  private parseFabricObject() {  
+  parseFabricObject() { 
     //
     this.fabricObjectTags.forEach((fabricRule: string) => {
       // serve activeRule in an array for later join
@@ -31,19 +27,19 @@ class CssFabricHelper {
       this.activeFabricTagValue = this.fabricObject[fabricRule];
 
       this.parseFabricObjectTag(fabricRule, this.activeFabricTagValue);
-    }); 
+    });
   }
 
-  static process(inputFabricObject: ICssObject): string {
+  static process(inputFabricObject: ICssObject) {
     const inst = new CssFabricHelper(inputFabricObject);
 
     // launch parse
     inst.parseFabricObject();
-    return inst.finalize();
+    return inst._finalize();
   }
 
 
-  private parseFabricObjectTag(tagRule: string, tagValue: any) {     
+  parseFabricObjectTag(tagRule: string, tagValue: any) {     
     //
     this.fabricDebug[this.activeFabricTag] = []; 
     //
@@ -51,12 +47,12 @@ class CssFabricHelper {
     //
     switch (tagValueType) {
       case "string":
-        this.terminate(tagRule, tagValue); 
+        this._terminate(tagRule, tagValue); 
         break;
       case "array":
         for (const tag of tagValue) {
           if (this.getType(tag) === "string") { 
-            this.terminate(tagRule, tag);
+            this._terminate(tagRule, tag);
           }
           if (this.getType(tag) === "array") {
             console.log(tag);
@@ -85,11 +81,11 @@ class CssFabricHelper {
     }
   } 
   
-  private finalize() {
+  private _finalize() {
     return this.fabricTerminate.join(" ");
   }
 
-  private terminate(parentKey: string, val: string) {
+  private _terminate(parentKey: string, val: string) {
     //
     this.fabricTerminate.push(`${parentKey}-${val}`);
   }

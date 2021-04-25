@@ -1,16 +1,16 @@
 {
-  "name": "@mydde/css-fabric-helper",
+  "name": "css-fabric-helper",
   "version": "1.0.0",
   "description": "",
-  "main": "./lib/index.js",
-  "typings": "./lib/index",
-  "types": "./lib/index.d.ts",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts",
+  "types": "./src",
   "files": [
-    "lib/"
+    "src/"
   ],
   "scripts": {
-    "dev": "tsc --watch & node lib/ ",
-    "start": "tsc & node lib/",
+    "dev": "tsc & node build/ ",
+    "start": "tsc & node build/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

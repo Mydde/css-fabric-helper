@@ -1,6 +1,6 @@
  
   export interface ICssObject {
-    [key: string]: number | string | any [];
+    [key: string]: any;
   }
  
 interface cssFabricHelper{

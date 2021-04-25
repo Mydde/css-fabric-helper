@@ -1,10 +1,10 @@
 {
-  "name": "@mydde/css-fabric-helper",
+  "name": "css-fabric-helper",
   "version": "1.0.0",
   "description": "",
   "main": "./lib/index.js",
   "typings": "./lib/index",
-  "types": "./lib/index.d.ts",
+  "types": "./src",
   "files": [
     "lib/"
   ],
