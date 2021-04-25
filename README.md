@@ -2,16 +2,20 @@
 
 ## Features
 
-css-fabric-helper is a shorthand css builder for css-fabric or others css frameworks
+css-fabric-helper is a shorthand css builder for css-fabric or others css frameworks 
 It's intended to be used as a classnames builder by doing recursive concatenation at string array or object level from a provided object
 
+
 ## Installation
+
 
 ```
 $ npm install css-fabric-helper
 ```
 
+
 ## Usage
+
 
 ```jsx
 import cssFabricHelper, { ICssFabricProps } from "css-fabric-helper";
@@ -30,24 +34,54 @@ const cssObject: ICssFabricProps = {
 };
 
 // generate classnames
-cssFabricHelper.process(cssObject);
+cssFabricHelper.process(cssObject); 
 
-("txt-h6 padding-right padding-sm-bottom-2 padding-sm-top-2 padding-xxl-bottom-1 padding-xxl-left-2");
 ```
 
-```jsx
-const cssObject: ICssFabricProps = {
-  grid: ["h", "wrap"],
-  border: {
-    grey: {
-      sm: { bottom: 2, top: 3 },
-    },
-    sm: { bottom: 2, top: 3 },
-    xxl: { bottom: 1, left: 2 },
-  },
-};
-grid-h grid-wrap border-grey-sm-bottom-2 border-grey-sm-top-3 border-sm-bottom-2 border-sm-top-3 border-xxl-bottom-1 border-xxl-left-2
+## Examples
+### - responsive first classnames
 
-// generate classnames
-cssFabricHelper.process(cssObject);
+```json
+{"sm": {"col": 2, "row": 1}, "lg": {"col": 4, "row": 2}}
+// - outputs : 
+// - sm-col-2 sm-row-1 lg-col-4 lg-row-2
+```
+
+### - another responsive example
+
+```json
+{"col": {"sm": [2, {"bg": "red"}]}, "row": {"lg": 3}}
+// - outputs : 
+// - col-sm-2 col-sm-bg-red row-lg-3
+```
+
+### test
+
+```json
+{"padding": 2, "border": {"bottom": 2, "top": 3}}
+// - outputs : 
+// - padding-2 border-bottom-2 border-top-3
+```
+
+### test2
+
+```json
+{"padding": "", "border": {"bottom": 2, "top": 3}}
+// - outputs : 
+// - padding border-bottom-2 border-top-3
+```
+
+### - more complex one
+
+```json
+{
+  "grid": ["h", "wrap"],
+  "border": {
+    "grey": {"sm": {"bottom": 2, "top": 3}},
+    "sm": {"bottom": 2, "top": 3},
+    "xxl": {"bottom": 1, "left": 2}
+  }
+}
+// - outputs : 
+// - grid-h grid-wrap border-grey-sm-bottom-2 border-grey-sm-top-3 border-sm-bottom-2 border-sm-top-3 border-xxl-bottom-1 border-xxl-left-2
 ```

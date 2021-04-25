@@ -14,9 +14,9 @@
     "lib/"
   ],
   "scripts": {
-    "dev": "tsc --watch & node lib/ ",
+    "dev": "tsc --watch & node lib/",
     "start": "tsc & node lib/",
-    "docs": "node lib/docs",
+    "docs": "node lib/docs/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -27,6 +27,10 @@
   "license": "ISC",
   "devDependencies": {
     "@types/json2md": "^1.5.0",
+    "@types/node": "^14.14.41",
+    "fs": "0.0.1-security",
+    "json-stringify-pretty-compact": "^3.0.0",
+    "pretty-js": "^0.2.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
