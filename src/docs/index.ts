@@ -25,12 +25,12 @@ const makeDocs = () => {
     row: { lg: 3 },
   };
 
-  examples["test"] = {
+  examples["- a simple rule example"] = {
     padding: 2,
     border: { bottom: 2, top: 3 },
   };
 
-  examples["test2"] = {
+  examples["- short classname"] = {
     padding: "",
     border: { bottom: 2, top: 3 },
   };
