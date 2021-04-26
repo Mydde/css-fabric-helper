@@ -55,7 +55,7 @@ cssFabricHelper.process(cssObject);
 // - col-sm-2 col-sm-bg-red row-lg-3
 ```
 
-### test
+### - a simple rule example
 
 ```json
 {"padding": 2, "border": {"bottom": 2, "top": 3}}
@@ -63,7 +63,7 @@ cssFabricHelper.process(cssObject);
 // - padding-2 border-bottom-2 border-top-3
 ```
 
-### test2
+### - short classname
 
 ```json
 {"padding": "", "border": {"bottom": 2, "top": 3}}
