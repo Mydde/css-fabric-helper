@@ -19,10 +19,10 @@ $ yarn @medyll/css-fabric-helper
 
 
 ```jsx
-import cssFabricHelper, { ICssFabricProps } from "css-fabric-helper";
+import cssFabricHelper, { CssFabricHelperType } from "css-fabric-helper";
 
 // declare your cssFabric object based on your framework rules
-const cssObject: ICssFabricProps = {
+const cssObject: CssFabricHelperType = {
   txt: "h6",
   padding: [
     "right", //  shorthand for {right:1} when .right,.right-1 {}

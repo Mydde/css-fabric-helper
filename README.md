@@ -19,10 +19,10 @@ $ yarn @medyll/css-fabric-helper
 
 
 ```jsx
-import cssFabricHelper, { ICssFabricProps } from "css-fabric-helper";
+import cssFabricHelper, { CssFabricHelperType } from "css-fabric-helper";
 
 // declare your cssFabric object based on your framework rules
-const cssObject: ICssFabricProps = {
+const cssObject: CssFabricHelperType = {
   txt: "h6",
   padding: [
     "right", //  shorthand for {right:1} when .right,.right-1 {}
@@ -42,7 +42,7 @@ cssFabricHelper.process(cssObject);
 ## Examples
 ### - responsive first classnames
 
-```json
+```jsx
 {"sm": {"col": 2, "row": 1}, "lg": {"col": 4, "row": 2}}
 // - outputs : 
 // - sm-col-2 sm-row-1 lg-col-4 lg-row-2
@@ -50,7 +50,7 @@ cssFabricHelper.process(cssObject);
 
 ### - another responsive example
 
-```json
+```jsx
 {"col": {"sm": [2, {"bg": "red"}]}, "row": {"lg": 3}}
 // - outputs : 
 // - col-sm-2 col-sm-bg-red row-lg-3
@@ -58,7 +58,7 @@ cssFabricHelper.process(cssObject);
 
 ### - a simple rule example
 
-```json
+```jsx
 {"padding": 2, "border": {"bottom": 2, "top": 3}}
 // - outputs : 
 // - padding-2 border-bottom-2 border-top-3
@@ -66,7 +66,7 @@ cssFabricHelper.process(cssObject);
 
 ### - short classname
 
-```json
+```jsx
 {"padding": "", "border": {"bottom": 2, "top": 3}}
 // - outputs : 
 // - padding border-bottom-2 border-top-3
@@ -74,7 +74,7 @@ cssFabricHelper.process(cssObject);
 
 ### - more complex one
 
-```json
+```jsx
 {
   "grid": ["h", "wrap"],
   "border": {

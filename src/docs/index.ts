@@ -1,11 +1,12 @@
 const fs = require("fs");
 const stringify = require("json-stringify-pretty-compact")
 import json2md from "json2md";
-import cssFabricHelper, { ICssFabricProps } from "../index";
+import cssFabricHelper, { CssFabricHelperType } from "../index";
 
 const makeDocs = () => {
   const examples: { [key: string]: any } = {};
   const outFinal: any = [];
+  const outFinalD: any = [];
 
   examples["- responsive first classnames"] = {
     sm: { col: 2, row: 1 },
@@ -40,22 +41,20 @@ const makeDocs = () => {
 
   Object.keys(examples).map((cssObject2Key, index) => {
     let cssObject2 = examples[cssObject2Key];
-
-    // let red = JSON.stringify(cssObject2,null);
-    let red = stringify(cssObject2);
+    
+    let codeContent = stringify(cssObject2);
     let reds = cssFabricHelper.process(cssObject2);
-
-    let codeContent =
-      red;
+    
     outFinal.push(
       { h3: cssObject2Key },
       {
         code: {
-          language: "json",
+          language: "jsx",
           content: [codeContent,"// - outputs : " ,"// - "+ reds],
         },
       }
     );
+    
   });
 
   return json2md(outFinal);

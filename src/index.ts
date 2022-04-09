@@ -2,7 +2,7 @@
 
 type TCssObjectValue = number | string | any[] | ICssFabricArgs;
 
-export interface ICssFabricProps<T = any> {
+export interface CssFabricHelperType<T = any> {
   [key: string]: TCssObjectValue;
 }
 
@@ -11,7 +11,7 @@ interface ICssFabricArgs {
 }
  
 class CssFabricHelper {
-  fabricObject: ICssFabricProps;
+  fabricObject: CssFabricHelperType;
   fabricObjectTags: any[];
   fabricDebug: any;
   private fabricTerminate: any;
@@ -19,7 +19,7 @@ class CssFabricHelper {
   private activeFabricTag: any;
   private activeFabricTagValue: any;
 
-  constructor(inputFabricObject: ICssFabricProps = {}) {
+  constructor(inputFabricObject: CssFabricHelperType = {}) {
     this.fabricObject = inputFabricObject;
     this.fabricDebug = {};
     this.fabricTerminate = [];
@@ -38,7 +38,7 @@ class CssFabricHelper {
     });
   }
 
-  static process(inputFabricObject: ICssFabricProps): string {
+  static process(inputFabricObject: CssFabricHelperType): string {
     const inst = new CssFabricHelper(inputFabricObject);
 
     // launch parse

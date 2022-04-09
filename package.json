@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git://github.com/Mydde/css-fabric-helper.git"
   },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "css-fabric-helper is a shorthand classnames builder dedicated to css frameworks",
   "main": "./lib",
   "typings": "./lib/index",
@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "dev": "tsc --watch & node lib/",
+    "build": "tsc",
     "docs": "node lib/docs/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,7 +27,7 @@
   "devDependencies": {
     "@types/json2md": "^1.5.0",
     "@types/node": "^14.14.41",
-    "fs": "0.0.1-security",
+    "fs": "^0.0.1-security",
     "json-stringify-pretty-compact": "^3.0.0",
     "pretty-js": "^0.2.1",
     "ts-node": "^9.1.1",
