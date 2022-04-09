@@ -3,7 +3,7 @@
   "homepage": "https://github.com/medyll/cssfabric-helper",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Mydde/css-fabric-helper.git"
+    "url": "git://github.com/medyll/cssfabric-helper.git"
   },
   "version": "0.1.2",
   "description": "css-fabric-helper is a shorthand classnames builder dedicated to css frameworks",
