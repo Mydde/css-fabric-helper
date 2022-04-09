@@ -1,6 +1,6 @@
 # VScode extension for file history
 .history/
-
+.idea
 # Logs
 logs
 *.log
