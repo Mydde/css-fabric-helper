@@ -2,15 +2,16 @@
 
 ## Features
 
-css-fabric-helper is a shorthand css builder for css-fabric or others css frameworks 
-It's intended to be used as a classnames builder by doing recursive concatenation at string array or object level from a provided object
+css-fabric-helper is a shorthand css builder for css-fabric or others css frameworks. 
 
 
 ## Installation
 
 
 ```
-$ npm install css-fabric-helper
+$ npm i @medyll/css-fabric-helper
+# or
+$ yarn @medyll/css-fabric-helper
 ```
 
 

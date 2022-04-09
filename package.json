@@ -1,11 +1,11 @@
 {
-  "name": "@mydde/css-fabric-helper",
-  "homepage": "https://github.com/Mydde/css-fabric-helper",
+  "name": "@medyll/css-fabric-helper",
+  "homepage": "https://github.com/medyll/cssfabric-helper",
   "repository": {
     "type": "git",
     "url": "git://github.com/Mydde/css-fabric-helper.git"
   },
-  "version": "1.0.0-alpha",
+  "version": "0.1.0",
   "description": "css-fabric-helper is a shorthand classnames builder dedicated to css frameworks",
   "main": "./lib",
   "typings": "./lib/index",
@@ -15,7 +15,6 @@
   ],
   "scripts": {
     "dev": "tsc --watch & node lib/",
-    "start": "tsc & node lib/",
     "docs": "node lib/docs/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

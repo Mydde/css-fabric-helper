@@ -1,15 +1,7 @@
 const fs = require("fs");
-const prettyJs  = require("pretty-js");
 const stringify = require("json-stringify-pretty-compact")
 import json2md from "json2md";
 import cssFabricHelper, { ICssFabricProps } from "../index";
-/*  
-
-
-
-
-
-console.log(json2md(exList)); */
 
 const makeDocs = () => {
   const examples: { [key: string]: any } = {};
@@ -66,7 +58,6 @@ const makeDocs = () => {
     );
   });
 
-  // console.log(json2md(outFinal));
   return json2md(outFinal);
 };
 

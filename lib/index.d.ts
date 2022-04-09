@@ -1,5 +1,5 @@
 declare type TCssObjectValue = number | string | any[] | ICssFabricArgs;
-export interface ICssFabricProps {
+export interface ICssFabricProps<T = any> {
     [key: string]: TCssObjectValue;
 }
 interface ICssFabricArgs {
