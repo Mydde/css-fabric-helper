@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git://github.com/Mydde/css-fabric-helper.git"
   },
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "css-fabric-helper is a shorthand classnames builder dedicated to css frameworks",
   "main": "./lib",
   "typings": "./lib/index",
@@ -20,8 +20,7 @@
   },
   "keywords": [],
   "author": {
-    "name": "Lebrun Meddy",
-    "email": "lebrn.meddy@gmail.com"
+    "name": "Lebrun Meddy"
   },
   "license": "ISC",
   "devDependencies": {
